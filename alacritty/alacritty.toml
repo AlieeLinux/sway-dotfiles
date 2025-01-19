@@ -1,0 +1,17 @@
+#set the window appearance
+[window]
+opacity = 0.8
+title = "Nya!lacritty"
+
+#font design/styles
+[font]
+normal = { family = "Consolas", style = "Regular" }
+size = 14
+
+
+#import from pywal16
+[general]
+import = [
+    "~/.cache/wal/colors-alacritty.toml",
+]
+

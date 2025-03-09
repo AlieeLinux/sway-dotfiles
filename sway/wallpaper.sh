@@ -2,13 +2,13 @@
 
 #By Troyyy
 
-wallpaper_dir="$(ls ~/wallpaper)"
+wallpaper_dir="$(ls ~/Pictures/wallpaper)"
 wallpaper="$HOME/.cache/currentwallpaper.png"
 
 # Show the menu using Rofi
 
 SelectWallpaper() {
-    chosen=$(echo -e "$wallpaper_dir" | rofi -dmenu -i -p "Choose a wallpaper:3" -l 17 )
+    chosen=$(echo -e -- "$wallpaper_dir" | rofi -dmenu -i -p "Choose a wallpaper:3" -l 17 )
 }
 
 RandomWallpaper() {
@@ -22,22 +22,22 @@ main() {
 	    notify-send "you didn't pick any wallpaper"
 	    return 1
     else
-	    waypaper --wallpaper "$path"  &
-	    wal -i "$HOME/wallpaper/$chosen" --saturate 1.0 -n
+	    waypaper --wallpaper -- "$path"  &
+	    wal -i "$HOME/Pictures/wallpaper/$chosen" --saturate 1.0 -n
 	    pkill waybar
 	    waybar -c ~/.config/waybar/config-sway.jsonc &
-	    cp "$HOME/wallpaper/$chosen" $wallpaper
+	    cp "$HOME/Pictures/wallpaper/$chosen" "$wallpaper"
 fi
 }
 
 if [[ -n $@ ]]; then
 	RandomWallpaper
-    path="~/wallpaper/$chosen"
+    path="~/Pictures/wallpaper/$chosen"
 
 	main
 else
 	SelectWallpaper
-    path="~/wallpaper/$chosen"
+    path="~/Pictures/wallpaper/$chosen"
 
 	main
 fi

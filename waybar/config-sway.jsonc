@@ -31,7 +31,7 @@
 		"rewrite": {"Firefox Web Browser": "Firefox"}
 	},
 	"custom/power": {
-            "format" : "   ⏻   ",
+            "format" : " ⏻ ",
             "on-click": "~/.config/waybar/login.sh"
            },
 	"sway/workspaces": {

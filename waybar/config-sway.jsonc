@@ -15,13 +15,13 @@
 		"battery",
         "network",
 		//"backlight",
-		"pulseaudio",
+		"wireplumber",
         "cpu",
 		// "pulseaudio#microphone",
 		"clock"
 	],
 	"include": [],
-	"hyprland/window": {
+	"sway/window": {
 		"format": "{}"
 	},
 	"wlr/taskbar" :{
@@ -86,7 +86,7 @@
 		"format-alt": "{time} {icon}",
 		"format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"]
 	},
-	"pulseaudio": {
+	"wireplumber": {
 		"format": "{icon} {volume}%",
 		"tooltip": false,
 		"format-muted": " Muted",

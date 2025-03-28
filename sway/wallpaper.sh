@@ -8,7 +8,7 @@ wallpaper="$HOME/.cache/currentwallpaper.png"
 # Show the menu using Rofi
 
 SelectWallpaper() {
-    chosen=$(echo -e -- "$wallpaper_dir" | rofi -dmenu -i -p "Choose a wallpaper:3" -l 17 )
+    chosen=$(echo -e "$wallpaper_dir" | rofi -dmenu -i -p "Choose a wallpaper:3" -l 17 )
 }
 
 RandomWallpaper() {

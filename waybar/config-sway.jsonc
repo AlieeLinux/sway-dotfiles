@@ -90,11 +90,8 @@
 		"format": "{icon} {volume}%",
 		"tooltip": false,
 		"format-muted": " Muted",
-		"on-click": "pavucontrol",
-		"on-click-right": "pavucontrol",
-		"on-scroll-up": "wpctl set-volume -l 1 @DEFAULT_SINK@ 5%+",
-		"on-scroll-down": "wpctl set-volume @DEFAULT_SINK@ 5%-",
-		"scroll-step": 5,
+		"on-click": "alacritty -e 'alsamixer'",
+		"on-click-right": "alacritty -e 'alsamixer'",
 		"format-icons": {
 			"headphone": "",
 			"hands-free": "",

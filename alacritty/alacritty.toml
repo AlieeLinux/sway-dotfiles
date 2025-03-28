@@ -1,7 +1,9 @@
 #set the window appearance
+#TERM = xterm-256color
+
 [window]
-opacity = 0.8
-title = "Nya!lacritty"
+opacity = 0.89
+title = "Alicritty"
 
 #font design/styles
 [font]

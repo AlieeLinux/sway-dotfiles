@@ -1,14 +1,14 @@
+# fix screenshare I guess
+
+exec XDG_CURRENT_DESKTOP=sway systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+#exec dbus-update-activation-environment DISPLAY I3SOCK SWAYSOCK WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+
+
+
 exec mako &
 # Default config for sway
-#
-# Copy this to ~/.config/sway/config and edit it to your liking.
-#
-# Read `man 5 sway` for a complete reference.
-exec wmname AiHoshino
-### Variables
-#
-# Logo key. Use Mod1 for Alt.
-#set $mod Mod4
 # Home row direction keys, like vim
 set $left h
 set $down j
@@ -64,7 +64,8 @@ client.focused $color1 $color2 $color3 $color4 $color5
  exec swayidle -w \
           timeout 300 'swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          before-sleep 'swaylock -f -c 000000'
+          before-sleep 'swaylock -f -c 000000' \
+          notify-send "Welcome back"
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -93,7 +94,7 @@ exec notify-send "Xwayland sucessfull" &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 #wayland support cause why not?
-#xwayland disable
+xwayland disable
 
 #for_window [app_id=".*"] floating enable
 
@@ -116,8 +117,8 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
     bindsym $mod+x exec $replay
 
     # brightness(ctl)
-#    bindsym $mod+Equal exec brightnessctl s +1%
-#    bindsym $mod+Minus exec brightnessctl s 1%-
+    bindsym $mod+Equal exec brightnessctl s +1%
+    bindsym $mod+Minus exec brightnessctl s 1%-
 
     # suspend
     bindsym $mod+Shift+s exec systemctl suspend
@@ -236,11 +237,11 @@ exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
     # You can send windows there and get them back later.
 
     # Move the currently focused window to the scratchpad
-    bindsym $mod+Shift+minus move scratchpad
+    bindsym $mod+Control+S move scratchpad
 
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
-    bindsym $mod+p scratchpad show
+    bindsym $mod+Control+D scratchpad show
 #
 # Resizing containers:
 #
@@ -270,7 +271,7 @@ bindsym $mod+Ctrl+Right resize grow width 10px
 
 # Decors 
 
-gaps outer 7
+#gaps outer 7
 
 
 
@@ -301,4 +302,4 @@ seat * {
 #}
 
 include @sysconfdir@/sway/config.d/*
-exec notify-send "Hello Master"
+

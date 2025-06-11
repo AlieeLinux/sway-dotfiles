@@ -7,17 +7,24 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 
 
 
-exec mako &
+exec swaync &
 # Default config for sway
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
+# Screen Shortcut
+set $on swaymsg "output * dpms on" &
+set $off swaymsg "output * dpms off" &
+
+# audios
 set $volup pulsemixer --change-volume +2 &
 set $voldown pulsemixer --change-volume -2 &
 set $mod Mod4
-#playerctl
+
+# playerctl
 set $minfo playerctl metadata
 set $QT_QPA_PLATFORMTHEME qt5ct
 set $next playerctl next
@@ -27,12 +34,18 @@ set $metadata $minfo title && $minfo artist
 set $data2 $minfo album &&  $minfo albumArtist
 set $previous playerctl previous
 set $replay playerctl stop && playerctl play
+
+# Power
 set $Power exec ~/.config/waybar/login.sh 
+
+set $emoji rofi -show emoji &
+set $Notifi exec swaync-client -t &
+
 
 #set $wallpaper ~/.config/sway/wallpaper.sh
 
 # Your preferred terminal emulator
-set $term alacritty
+set $term foot
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -64,9 +77,7 @@ client.focused $color1 $color2 $color3 $color4 $color5
  exec swayidle -w \
           timeout 300 'swaylock -f -c 000000' \
           timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' \
-          before-sleep 'swaylock -f -c 000000' \
-          notify-send "Welcome back"
-#
+          before-sleep 'swaylock -f -c 000000' 
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
 # resumed. It will also lock your screen before your computer goes to sleep.
@@ -94,7 +105,7 @@ exec notify-send "Xwayland sucessfull" &
 exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 
 #wayland support cause why not?
-xwayland disable
+xwayland force
 
 #for_window [app_id=".*"] floating enable
 
@@ -131,6 +142,7 @@ xwayland disable
 
     # Start your launcher
     bindsym $mod+Ctrl+Return exec $menu
+    bindsym $mod+Ctrl+E exec $emoji
     bindsym $mod+Tab exec $alttab
 
     bindsym $mod+Print exec ~/.config/sway/screenshot.sh
@@ -144,6 +156,9 @@ xwayland disable
 
     # Reload the configuration file
     bindsym $mod+Shift+r reload
+
+    # notification panel
+    bindsym $mod+Ctrl+p $Notifi
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Ctrl+q exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
@@ -268,16 +283,20 @@ bindsym $mod+Ctrl+Right resize grow width 10px
 
 #bindsym $mod+r mode "resize"
 
+# screen on/off
+bindsym $mod+ctrl+F2 exec $off
+bindsym $mod+ctrl+F3 exec $on
+
 
 # Decors 
 
-#gaps outer 7
+gaps outer 7
 
 
 
 #theme cursor
 seat * {
-    xcursor_theme Bibata-Pink-Ice 24
+    xcursor_theme Bibata-Pink-Ice 15
 }
 #
 # Status Bar:

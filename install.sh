@@ -16,10 +16,11 @@ Test() {
 }
 
 Linking() { 
-    for i in $(/bin/ls); do
-        mkdir ~/.config/"$i" && ln -s ~/.config/"$i"/* 
-        ln -s "$i"/* ~/.config/"$i"/
-    done 
+        find "*" -type d -exec mkdir "$HOME/.config/{}" \; -exec ln "./{}/*" "$HOME/.config/{}/*" \;
+#    for i in $(/bin/ls); do
+#        mkdir ~/.config/"$i" && ln -s ~/.config/"$i"/* 
+#        ln "/*$i" ~/.config/"$i"/
+#    done 
 }
 
 Test

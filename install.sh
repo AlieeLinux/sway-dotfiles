@@ -4,6 +4,8 @@ MakeDotfile() { if ! mkdir ~/dotfiles; then echo "file exists" && cp -r -- * "$H
 
 SWAYEXIST=false
 
+cd ~/dotfiles || exit 1
+
 PreCreate() {
     wal -i ./meme.png
 }
@@ -32,6 +34,7 @@ Linking() {
 
 }
 
+MakeDotfile
 Test
 Linking
 

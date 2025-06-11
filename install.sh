@@ -1,5 +1,7 @@
 #!/usr/bin/bash
 
+MakeDotfile() { if ! mkdir ~/dotfiles; then echo "file exists" && cp -r -- * "$HOME/dotfiles"; else cp -r -- * "$HOME/dotfiles";  fi }
+
 SWAYEXIST=false
 
 Copy() {
@@ -8,20 +10,19 @@ Copy() {
 }
 
 Test() {
-    for item in $HOME/.config/sway; do
+    if ls "$HOME/.config/sway"; then
         SWAYEXIST=true
-    done
+    fi
 }
 
-
-
-Linker() {
-    ln ./sway/* ~/.config/sway
+Linking() { 
+    for i in $(/bin/ls); do
+        mkdir ~/.config/"$i" && ln -s ~/.config/"$i"/* 
+        ln -s "$i"/* ~/.config/"$i"/
+    done 
 }
 
 Test
-
-
 
 
 

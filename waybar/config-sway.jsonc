@@ -6,12 +6,14 @@
 	"exclusive": true,
 	"passthrough": false,
 	"gtk-layer-shell": true,
-	"height": 30,
-	"modules-left": ["custom/power", "wlr/taskbar", "tray", "sway/window", "sway/mode"],
-	"modules-center": ["sway/workspaces"],
+	"height": 10,
+	"modules-left": ["custom/power", "custom/update", "wlr/taskbar", "tray", "sway/window", "sway/mode"],
+	"modules-center": ["sway/workspaces", "sway/scratchpad"],
 	"modules-right": [
 		//"backlight",
 		"temperature",
+		"custom/core0",
+		"custom/core2",
 		"battery",
         "network",
 		//"backlight",
@@ -27,18 +29,23 @@
 	"wlr/taskbar" :{
 		"format": "{icon}",
 		"on-click": "activate",
-		"icon-size": 15,
+		"icon-size": 10,
 		"rewrite": {"Firefox Web Browser": "Firefox"}
 	},
 	"custom/power": {
-            "format" : " ⏻ ",
-            "on-click": "~/.config/waybar/login.sh"
+            "format" : "   ⏻   ",
+            "on-click": "wlogout"
            },
+	"custom/update": {
+  		"exec": "~/.config/waybar/FetchUpdates.sh",
+  		"interval": 222,
+  		"format": "  ↑{}  "
+	},
 	"sway/workspaces": {
 		"all-outputs": true,
 		"on-click": "activate",
 		"persistent-workspaces": {
-            "1": 1,
+        "1": 1,
 	    "2": 2,
 	    "3": 3,
 	    "4": 4,
@@ -47,8 +54,8 @@
 		}
 	},
 	"tray": {
-		"icon-size": 0.1,
-		"spacing": 5
+		"icon-size": 10,
+		"spacing": 2
 	},
 	"clock": {
 		"format": "{:%H:%M}",
@@ -71,7 +78,8 @@
 		"min-length": 6
 	},
     "cpu": {
-        "format": "{usage}%"
+        "format": "{usage}%",
+		"on-click": "~/.config/waybar/cpufreq.sh"
 //    "interval": "1"
     },
 	"battery": {
@@ -102,6 +110,28 @@
 			"default": ["", "", ""]
 		}
 	},
+	"cava": {
+//        "cava_config": "$XDG_CONFIG_HOME/cava/cava.conf",
+        "framerate": 30,
+        "autosens": 1,
+        "sensitivity": 1,
+        "bars": 10,
+        "lower_cutoff_freq": 50,
+        "higher_cutoff_freq": 10000,
+        "method": "pulse",
+        "source": "auto",
+        "stereo": true,
+        "reverse": false,
+        "bar_delimiter": ".",
+        "monstercat": false,
+        "waves": false,
+        "noise_reduction": 0.77,
+        "input_delay": 2,
+        "format-icons" : ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█" ],
+        "actions": {
+                   "on-click-right": "mode"
+                   }
+    },
 	"pulseaudio#microphone": {
 		"format": "{format_source}",
 		"format-source": " {volume}%",
@@ -114,16 +144,25 @@
 	},
 	"temperature": {
 		"thermal-zone": 0,
-		"format": " {temperatureC}°C",
-		"critical-threshold": 80,
-		"format-critical": "Dangerous: {temperatureC}°C ",
-        "interval": "1"
+		"format": "{temperatureC}°C",
+		"critical-threshold": 90,
+		"format-critical": "Dangerous: {temperatureC}°C "
+	},
+	"custom/core0": {
+  		"exec": "sensors | grep 'Core 0' | awk '{print $3}' | tr -d '+'",
+  		"interval": 10,
+  		"format": " {} "
+	},
+	"custom/core2": {
+  		"exec": "sensors | grep 'Core 2' | awk '{print $3}' | tr -d '+'",
+  		"interval": 10,
+  		"format": " {} "
 	},
 	"network": {
-        "interface": "wlan0",
+        "interface": "wlp3s0",
 		"format-wifi": " {signalStrength}%",
 		"format-ethernet": "{ipaddr}/{cidr}",
-		"tooltip-format": "{essid} - {ifname} via {gwaddr}",
+		"tooltip-format": "{essid} - {ifname} via {gwaddr}", 
 		"format-linked": "{ifname} (No IP)",
 		"format-disconnected": "Disconnected ⚠",
 		"format-alt": "{ifname}:{essid} {ipaddr}/{cidr}",
@@ -137,6 +176,13 @@
 		"tooltip-format-connected": " {device_enumerate}",
 		"tooltip-format-enumerate-connected": "{device_alias}",
 		"on-click": "bluetooth toggle"
-	}
+	},
+	"sway/scratchpad": {
+        "format": "{icon} {count}",
+        "show-empty": false,
+        "format-icons": ["", "<U+F2D2>"],
+        "tooltip": true,
+        "tooltip-format": "{app}: {title}"
+    }
 }
 

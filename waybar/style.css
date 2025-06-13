@@ -1,8 +1,8 @@
 @import "colors.css";
 
 * {
-    font-family: "JetBrainsMono Nerd Font, monospace";  
-/*    font-family: "FiraCode Nerd Font, monospace"; */
+/*    font-family: "JetBrainsMono Nerd Font, monospace";  */
+    font-family: "FiraCode Nerd Font, monospace"; 
     font-weight: bold;
     font-size: 10px;
     min-height: 0;
@@ -19,8 +19,8 @@ h1 {
 
 #custom-power {
     background: @background;
-    border: 4px solid  @color2;
-    font-size: 20px;
+    border: 2px solid  @color2;
+    font-size: 10px;
     margin-left: 10px;
     padding-right: 0px;
     border-radius: 25;
@@ -59,7 +59,7 @@ tooltip {
 
 #workspaces {
     background: @background;
-    border: 4px solid  @color2;
+    border: 2px solid  @color2;
 }
 
 h1 {
@@ -69,6 +69,7 @@ h1 {
 #workspaces button.active {
     background: @color2;
     transition: all 0.3s ease-in-out;
+    border-radius: 25px;
     opacity: 1;
     min-width: 15px;
     border-radius: 15px;
@@ -76,7 +77,10 @@ h1 {
 
 #workspaces button.focused {
     color: @color1;
-    background: @background;
+    min-width: 15px;
+    border-radius: 15px;
+    background: @color6;
+    transition: all 0.5s ease-in-out;
 }
 
 #workspaces button.urgent {
@@ -91,6 +95,7 @@ h1 {
     min-width: 17px;
 }
 
+#temperature,
 #cpu,
 #window,
 #clock,
@@ -101,34 +106,68 @@ h1 {
 #temperature,
 #workspaces,
 #tray,
+
 #backlight {
     padding: 0px 14px;
     background: @background;
 }
 
+#custom-update {
+    color: @color8;
+    font-weight: bold;
+    border: 2px solid @color2;
+    border-radius: 25px;
+    background: @background;
+}
+
+#custom-core0 {
+    color: @color8;
+    font-weight: bold;
+    border: 2px solid @color2;
+    border-radius: 25px;
+    background: @background;
+}
+
+#custom-power {
+    color: @color8;
+    font-weight: bold;
+    border: 2px solid @color2;
+    border-radius: 25px;
+    background: @background;
+}
+
+#custom-core2 {
+    color: @color8;
+    font-weight: bold;
+    border: 2px solid @color2;
+
+    border-radius: 25px;
+    background: @background;
+}
+
 #cpu {
     color: @color3;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     border-radius: 25px;
     background: @background;
 }
 
 #temperature {
     color : @color8;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     border-radius: 25px;
     background: @background;
 }
 
 #temperature.critical {
     color: @color15;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     border-radius: 25px;
     background: @background;
 }
 
 #tray {
-    border: 4px dotted @color2;
+    border: 2px dotted @color2;
     margin-right: 10px;
     border-radius: 25px;
 
@@ -138,13 +177,14 @@ h1 {
     background: @background;
     border: 2px solid @color2;
     font-size: 1px;
-    border-radius: 25px;
+    border-radius: 25px; 
 }
 
 #taskbar button.active {
-    background: @color2;
+    background: @color3;
     transition: all 0.3s ease-in-out;
     opacity: 1;
+    min-width: 19px;
     border-radius: 25px;
 
 }
@@ -163,13 +203,13 @@ h1 {
     margin-right: 17px;
     color: @color3;
     border-radius: 25px;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     transition: opacity 0.5s ease-in-out;
     background: @background;
 }
 
 #clock {
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     color: @color1;
     margin-right: 14px;
     border-radius: 25px;
@@ -177,33 +217,39 @@ h1 {
 
 #network {
     color: @color8;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     border-radius: 25px;
     transition: all 0.5s ease-in-out;
 }
 
 #bluetooth {
     color: @color8;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     border-radius: 25px;
 } 
 
 #wireplumber {
     color: @color4;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     border-radius: 25px;
+}
 
+#scratchpad {
+    color: @color4;
+    border: 2px solid @color2;
+    min-width: 10px;
+    border-radius: 25px;
 }
 
 #pulseaudio.microphone {
     color: @color10;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     border-radius: 25px;
 }
 
 #battery {
     color: @color6;
-    border: 4px solid @color2;
+    border: 2px solid @color2;
     border-radius: 25px;
 }
 
